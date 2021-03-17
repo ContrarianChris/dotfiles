@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Install ZSH
+sudo apt install zsh
+
+# Install Oh-My-Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+
+# Install/update Powerlevel10k ZSH theme
+if [ ! -d "$HOME/.config/oh-my-zsh/themes/powerlevel10k" ]
+then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}/themes/powerlevel10k
+else
+  git -C ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}/themes/powerlevel10k pull
+fi
