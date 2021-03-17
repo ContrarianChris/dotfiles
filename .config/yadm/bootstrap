@@ -1,15 +1,27 @@
 #!/bin/bash
 
 # Install ZSH
+echo "Installing ZSH..."
 sudo apt install zsh
 
-# Install Oh-My-Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+# Install/update Oh-My-ZSH
+if [ ! -d "$HOME/.oh-my-zsh" ]
+then
+  echo "Installing Oh-My-ZSH..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+else
+  echo "Oh-My-ZSH already installed, updating..."
+  /bin/zsh -i -c 'omz "$0"' update
+fi
 
 # Install/update Powerlevel10k ZSH theme
 if [ ! -d "$HOME/.config/oh-my-zsh/themes/powerlevel10k" ]
 then
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}/themes/powerlevel10k
+  echo "Installing Powerlevel10k ZSH theme..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh}/themes/powerlevel10k
 else
-  git -C ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}/themes/powerlevel10k pull
+  echo "Powerlevel10k ZSH theme already installed, updating..."
+  git -C ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh}/themes/powerlevel10k pull
 fi
+
+echo "All done!"
