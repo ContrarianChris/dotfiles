@@ -107,5 +107,22 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# add Pulumi to PATH
+export PATH=$PATH:$HOME/.pulumi/bin
+
+# add Go to PATH
+export PATH=$PATH:/usr/local/go/bin
+
+# add Go /bin directory to PATH
+export PATH=$PATH:$HOME/go/bin
+
+# set kubectl editor to nano
+export KUBE_EDITOR=nano
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
